@@ -31,7 +31,7 @@ const animationObserver = new IntersectionObserver((entries) => {
 
     if (entry.target.classList.contains("stat-item")) {
       const h3 = entry.target.querySelector("h3");
-      if (h3) animateCounter(h3); // no "++" now
+      if (h3) animateCounter(h3);
     }
 
     if (
@@ -62,10 +62,10 @@ function animateCounter(element) {
     current += increment;
 
     if (current >= target) {
-      element.textContent = String(target); // ✅ no "+"
+      element.textContent = String(target);
       clearInterval(timer);
     } else {
-      element.textContent = String(Math.floor(current)); // ✅ no "+"
+      element.textContent = String(Math.floor(current));
     }
   }, 30);
 }
@@ -188,19 +188,62 @@ function typeWriter(element, text, speed = 50) {
 }
 
 /* ==========================
-   Active nav highlighting (FIX for "index/about/careers" routes)
+   Active nav highlighting (works with routes)
    ========================== */
 function normalizeRoute(value) {
   if (!value) return "";
-  // remove query/hash
   const clean = value.split("?")[0].split("#")[0];
-  // if absolute '/', treat as index
   if (clean === "/" || clean === "") return "index";
-  // take last path segment
+
   let last = clean.split("/").filter(Boolean).pop() || "index";
-  // remove extension if any
   last = last.replace(/\.html$/i, "");
   return last.toLowerCase();
+}
+
+/* ==========================
+   WhatsApp Popup
+   ========================== */
+function initWhatsAppPopup() {
+  const openBtn = document.getElementById("whatsappOpenBtn");
+  const overlay = document.getElementById("waOverlay");
+  const popup = document.getElementById("waPopup");
+  const closeBtn = document.getElementById("waCloseBtn");
+  const msg = document.getElementById("waMsg");
+  const sendBtn = document.getElementById("waSendBtn");
+
+  if (!openBtn || !overlay || !popup || !closeBtn || !msg || !sendBtn) return;
+
+  // ✅ Replace with client's WhatsApp number (country code, no +)
+  const WHATSAPP_NUMBER = "919876543210";
+
+  const open = () => {
+    document.body.classList.add("wa-open");
+    popup.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    updateLink();
+  };
+
+  const close = () => {
+    document.body.classList.remove("wa-open");
+    popup.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  const updateLink = () => {
+    const text = encodeURIComponent(msg.value || "");
+    sendBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+  };
+
+  openBtn.addEventListener("click", open);
+  closeBtn.addEventListener("click", close);
+  overlay.addEventListener("click", close);
+  msg.addEventListener("input", updateLink);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && document.body.classList.contains("wa-open")) {
+      close();
+    }
+  });
 }
 
 /* ==========================
@@ -209,8 +252,8 @@ function normalizeRoute(value) {
 document.addEventListener("DOMContentLoaded", () => {
   initSidebar();
   initSmoothScroll();
+  initWhatsAppPopup();
 
-  // observe animated blocks
   const animatedElements = document.querySelectorAll(
     ".content-block, .feature-card, .service-card, .step, .position-card"
   );
@@ -221,37 +264,31 @@ document.addEventListener("DOMContentLoaded", () => {
     animationObserver.observe(el);
   });
 
-  // section headers
   const sectionHeaders = document.querySelectorAll(".section-header");
   sectionHeaders.forEach((header) => {
     header.classList.add("animate-on-scroll", "scale-in");
     animationObserver.observe(header);
   });
 
-  // stats
   const statItems = document.querySelectorAll(".stat-item");
   statItems.forEach((item) => {
     item.classList.add("animate-on-scroll");
     animationObserver.observe(item);
   });
 
-  // active navigation highlighting
   const currentRoute = normalizeRoute(window.location.pathname);
   const navLinks = document.querySelectorAll(".nav-link");
-
   navLinks.forEach((link) => {
     const href = link.getAttribute("href");
     const linkRoute = normalizeRoute(href);
     if (linkRoute && linkRoute === currentRoute) link.classList.add("active");
   });
 
-  // service icon animation delay
   const serviceIcons = document.querySelectorAll(".service-icon");
   serviceIcons.forEach((icon, index) => {
     icon.style.animationDelay = `${index * 0.2}s`;
   });
 
-  // parallax hero (safe)
   window.addEventListener("scroll", () => {
     const hero = document.querySelector(".hero");
     if (!hero) return;
@@ -262,7 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // typing effect only on home
   const isHome = currentRoute === "index";
   if (isHome) {
-    const heroTitle = document.querySelector(".hero-text h1");
+    const heroTitle = document.querySelector(".hero-left .hero-title");
     if (heroTitle) {
       const originalText = heroTitle.textContent;
       typeWriter(heroTitle, originalText, 30);
