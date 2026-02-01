@@ -29,13 +29,36 @@
                     <i class="fas fa-briefcase"></i> View Openings
                 </a>
                 
-                <button class="mobile-menu-btn">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
             </nav>
         </div>
     </header>
+    <!-- Mobile Sidebar + Overlay -->
+<div class="overlay" id="overlay"></div>
 
+<aside class="sidebar" id="sidebar" aria-hidden="true">
+  <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">
+    <i class="fas fa-times"></i>
+  </button>
+
+  <a href="index.html" class="sidebar-logo">
+    <div class="logo-icon">PV</div>
+    <div class="logo-text">Policy<span>Veda</span></div>
+  </a>
+
+  <nav class="sidebar-nav" aria-label="Mobile Navigation">
+    <a href="index.html" class="sidebar-link">Home</a>
+    <a href="about.html" class="sidebar-link">About</a>
+    <a href="services.html" class="sidebar-link">Services</a>
+    <a href="careers.html" class="sidebar-link">Careers</a>
+  </nav>
+
+  <a href="#consultation" class="sidebar-cta">
+    <i class="fas fa-phone-alt"></i> Free Consultation
+  </a>
+</aside>
     <!-- Page Hero -->
     <section class="page-hero">
         <div class="container">
