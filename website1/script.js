@@ -21,23 +21,19 @@ const animationObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (!entry.isIntersecting) return;
 
-    // Animate on scroll
     if (entry.target.classList.contains("animate-on-scroll")) {
       const delay = Number(entry.target.dataset.delay || 0);
-
       setTimeout(() => {
         entry.target.classList.add("animated");
         animateElement(entry.target);
       }, delay * 100);
     }
 
-    // Stats counter
     if (entry.target.classList.contains("stat-item")) {
       const h3 = entry.target.querySelector("h3");
-      if (h3) animateCounter(h3);
+      if (h3) animateCounter(h3); // no "++" now
     }
 
-    // Hover animation for cards
     if (
       entry.target.classList.contains("feature-card") ||
       entry.target.classList.contains("service-card")
@@ -48,14 +44,14 @@ const animationObserver = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 /* ==========================
-   Counter animation
+   Counter animation (FIX: no "+")
+   CSS already adds + via ::after
    ========================== */
 function animateCounter(element) {
   const raw = element.textContent.trim();
   const target = parseInt(raw, 10);
   if (Number.isNaN(target)) return;
 
-  // prevent re-running
   if (element.dataset.counted === "true") return;
   element.dataset.counted = "true";
 
@@ -66,10 +62,10 @@ function animateCounter(element) {
     current += increment;
 
     if (current >= target) {
-      element.textContent = target + "+";
+      element.textContent = String(target); // ✅ no "+"
       clearInterval(timer);
     } else {
-      element.textContent = Math.floor(current) + "+";
+      element.textContent = String(Math.floor(current)); // ✅ no "+"
     }
   }, 30);
 }
@@ -78,7 +74,6 @@ function animateCounter(element) {
    Card hover animation
    ========================== */
 function animateCard(card) {
-  // prevent adding listeners multiple times
   if (card.dataset.hoverBound === "true") return;
   card.dataset.hoverBound = "true";
 
@@ -111,7 +106,7 @@ function animateElement(element) {
 
 /* ==========================
    Mobile Sidebar (Responsive)
-   Requires HTML IDs:
+   Requires IDs:
    #mobileMenuBtn, #sidebar, #overlay, #sidebarClose
    ========================== */
 function initSidebar() {
@@ -121,7 +116,6 @@ function initSidebar() {
   const overlay = document.getElementById("overlay");
   const closeBtn = document.getElementById("sidebarClose");
 
-  // If any missing on a page, just skip (safe for all pages)
   if (!menuBtn || !sidebar || !overlay || !closeBtn) return;
 
   const openMenu = () => {
@@ -142,14 +136,12 @@ function initSidebar() {
   closeBtn.addEventListener("click", closeMenu);
   overlay.addEventListener("click", closeMenu);
 
-  // Close on ESC
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && body.classList.contains("sidebar-open")) {
       closeMenu();
     }
   });
 
-  // Close when clicking any link inside sidebar
   sidebar.addEventListener("click", (e) => {
     const link = e.target.closest("a");
     if (link) closeMenu();
@@ -196,16 +188,29 @@ function typeWriter(element, text, speed = 50) {
 }
 
 /* ==========================
+   Active nav highlighting (FIX for "index/about/careers" routes)
+   ========================== */
+function normalizeRoute(value) {
+  if (!value) return "";
+  // remove query/hash
+  const clean = value.split("?")[0].split("#")[0];
+  // if absolute '/', treat as index
+  if (clean === "/" || clean === "") return "index";
+  // take last path segment
+  let last = clean.split("/").filter(Boolean).pop() || "index";
+  // remove extension if any
+  last = last.replace(/\.html$/i, "");
+  return last.toLowerCase();
+}
+
+/* ==========================
    DOM Ready
    ========================== */
 document.addEventListener("DOMContentLoaded", () => {
-  // ✅ Sidebar init
   initSidebar();
-
-  // ✅ Smooth scroll init
   initSmoothScroll();
 
-  // Add animation classes to elements and observe
+  // observe animated blocks
   const animatedElements = document.querySelectorAll(
     ".content-block, .feature-card, .service-card, .step, .position-card"
   );
@@ -216,50 +221,46 @@ document.addEventListener("DOMContentLoaded", () => {
     animationObserver.observe(el);
   });
 
-  // Section headers animation
+  // section headers
   const sectionHeaders = document.querySelectorAll(".section-header");
   sectionHeaders.forEach((header) => {
     header.classList.add("animate-on-scroll", "scale-in");
     animationObserver.observe(header);
   });
 
-  // Stats animation
+  // stats
   const statItems = document.querySelectorAll(".stat-item");
   statItems.forEach((item) => {
     item.classList.add("animate-on-scroll");
     animationObserver.observe(item);
   });
 
-  // Active navigation highlighting (desktop nav)
-  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  // active navigation highlighting
+  const currentRoute = normalizeRoute(window.location.pathname);
   const navLinks = document.querySelectorAll(".nav-link");
 
   navLinks.forEach((link) => {
-    const linkHref = link.getAttribute("href");
-    if (linkHref === currentPage) link.classList.add("active");
+    const href = link.getAttribute("href");
+    const linkRoute = normalizeRoute(href);
+    if (linkRoute && linkRoute === currentRoute) link.classList.add("active");
   });
 
-  // Floating animation delay for service icons (if exists)
+  // service icon animation delay
   const serviceIcons = document.querySelectorAll(".service-icon");
   serviceIcons.forEach((icon, index) => {
     icon.style.animationDelay = `${index * 0.2}s`;
   });
 
-  // Parallax effect on hero (safe)
+  // parallax hero (safe)
   window.addEventListener("scroll", () => {
     const hero = document.querySelector(".hero");
     if (!hero) return;
-
     const scrolled = window.pageYOffset;
     hero.style.transform = `translateY(${scrolled * 0.05}px)`;
   });
 
-  // Typing animation only on home page
-  const isHome =
-    currentPage === "index.html" ||
-    window.location.pathname === "/" ||
-    window.location.pathname.endsWith("/");
-
+  // typing effect only on home
+  const isHome = currentRoute === "index";
   if (isHome) {
     const heroTitle = document.querySelector(".hero-text h1");
     if (heroTitle) {
