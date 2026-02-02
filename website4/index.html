@@ -123,6 +123,7 @@
 
         .navbar-nav .nav-link:hover,
         .navbar-nav .nav-link.active {
+            border-radius: 8px;
             color: var(--primary-blue) !important;
             background-color: var(--light-blue);
         }
@@ -889,65 +890,93 @@
 </head>
 
 <body>
-    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="/">
-                <img src="./images/PolicyVedaLogo.jpeg" alt="PolicyVeda" class="img-fluid">
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class=" nav-cta-btn" href="#consultation">
-                            <i class="fas fa-phone-alt"></i> Free Consultation
-                        </a>
-                    </li>
-                </ul>
-            </div>
+      
+          <!-- Logo (fixed size, consistent) -->
+          <a class="navbar-brand" href="/">
+            <img 
+              src="./images/PolicyVedaLogo.png"
+              alt="PolicyVeda"
+              class="img-fluid"
+              style="height: 60px;"
+            >
+          </a>
+      
+          <!-- Toggler -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <!-- Navbar links -->
+          <div class="collapse navbar-collapse" id="navbarNav">
+      
+            <!-- Center Home & About -->
+            <ul class="navbar-nav mx-auto text-center">
+              <li class="nav-item">
+                <a class="nav-link active" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about">About</a>
+              </li>
+            </ul>
+      
+            <!-- Right aligned CTA -->
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class=" nav-cta-btn" href="#consultation">
+                  <i class="fas fa-phone-alt"></i> Free Consultation
+                </a>
+              </li>
+            </ul>
+      
+          </div>
         </div>
     </nav>
+      
 
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 animate-fade-in-up">
-                    <h1 class="hero-title">Compare & Buy Insurance Plans That <span>Truly Protect You</span></h1>
-                    <p class="hero-subtitle">
-                        <strong>PolicyVeda</strong> helps you compare the best health insurance plans and term insurance policies from top insurers in India. Get transparent comparisons, expert advice, and hassle-free policy buying—all in one place.
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="#consultation" class="btn-primary-custom">
-                            <i class="fas fa-user-tie"></i> Talk to an Advisor
-                        </a>
-                        <a href="https://wa.me/919876543210?text=Hi,%20I%20need%20help%20choosing%20the%20right%20insurance%20policy."
-                            class="btn-secondary-custom" target="_blank">
-                            <i class="fab fa-whatsapp"></i> WhatsApp Expert
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-6 animate-fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="hero-image-container mt-5 mt-lg-0">
-                        <i class="fas fa-shield-alt hero-icon"></i>
-                        <h4 class="fw-bold mb-3" style="color: var(--dark-blue);">Your Financial Safety Net</h4>
-                        <p class="text-muted">Secure your future with the right insurance coverage</p>
-                    </div>
-                </div>
+          <div class="row align-items-center">
+      
+            <div class="col-lg-6 animate-fade-in-up">
+              <h1 class="hero-title">
+                Compare & Buy Insurance Plans That <span>Truly Protect You</span>
+              </h1>
+              <p class="hero-subtitle">
+                <strong>PolicyVeda</strong> helps you compare the best health insurance plans and term insurance policies from top insurers in India.
+              </p>
+      
+              <div class="hero-buttons">
+                <a href="#consultation" class="btn-primary-custom">
+                  <i class="fas fa-user-tie"></i> Talk to an Advisor
+                </a>
+                <a href="https://wa.me/919876543210" class="btn-secondary-custom" target="_blank">
+                  <i class="fab fa-whatsapp"></i> WhatsApp Expert
+                </a>
+              </div>
             </div>
+      
+            <div class="col-lg-6 animate-fade-in-up" style="animation-delay: 0.2s;">
+              <div class="hero-image-container mt-5 mt-lg-0 text-center">
+      
+                <!-- Smaller Image -->
+                <img
+                  src="./images/Hero-SectionImage.png"
+                  alt="Hero Section"
+                  class="img-fluid w-75 mx-auto d-block rounded"
+                >
+      
+                <h4 class="fw-bold my-3 text-dark">Your Financial Safety Net</h4>
+                <p class="text-muted">Secure your future with the right insurance coverage</p>
+              </div>
+            </div>
+      
+          </div>
         </div>
-    </section>
-
+      </section>
+      
     <!-- Insurance Services Section -->
     <section class="services-section section-padding" id="services">
         <div class="container">
@@ -1092,7 +1121,7 @@
         <div class="container">
             <h2 class="section-title">Our Insurance Partners</h2>
             <p class="section-subtitle">Partnered with leading insurance companies to provide you the best options</p>
-
+    
             <!-- Tabs Navigation -->
             <ul class="nav nav-tabs" id="partnerTabs" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -1101,17 +1130,12 @@
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="car-tab" data-bs-toggle="tab" data-bs-target="#car" type="button" role="tab">
-                        <i class="fas fa-car me-2"></i> Car Insurance
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="bike-tab" data-bs-toggle="tab" data-bs-target="#bike" type="button" role="tab">
-                        <i class="fas fa-motorcycle me-2"></i> Bike Insurance
+                    <button class="nav-link" id="term-tab" data-bs-toggle="tab" data-bs-target="#term" type="button" role="tab">
+                        <i class="fas fa-user-shield me-2"></i> Term Insurance
                     </button>
                 </li>
             </ul>
-
+    
             <!-- Tabs Content -->
             <div class="tab-content mt-4" id="partnerTabsContent">
                 <!-- Health Insurance Partners -->
@@ -1183,30 +1207,62 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Car Insurance Partners -->
-                <div class="tab-pane fade" id="car" role="tabpanel">
+    
+                <!-- Term Insurance Partners -->
+                <div class="tab-pane fade" id="term" role="tabpanel">
                     <div class="row g-3">
                         <div class="col-6 col-md-4 col-lg-3">
                             <div class="partner-card">
                                 <div class="partner-logo">
-                                    <i class="fas fa-car"></i>
+                                    <i class="fas fa-shield-heart"></i>
                                 </div>
-                                <h6 class="partner-name">ICICI Lombard</h6>
+                                <h6 class="partner-name">HDFC Life</h6>
                             </div>
                         </div>
                         <div class="col-6 col-md-4 col-lg-3">
                             <div class="partner-card">
                                 <div class="partner-logo">
-                                    <i class="fas fa-car"></i>
+                                    <i class="fas fa-user-shield"></i>
                                 </div>
-                                <h6 class="partner-name">HDFC Ergo</h6>
+                                <h6 class="partner-name">ICICI Prudential</h6>
                             </div>
                         </div>
                         <div class="col-6 col-md-4 col-lg-3">
                             <div class="partner-card">
                                 <div class="partner-logo">
-                                    <i class="fas fa-car"></i>
+                                    <i class="fas fa-hands-holding-heart"></i>
+                                </div>
+                                <h6 class="partner-name">LIC India</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-life-ring"></i>
+                                </div>
+                                <h6 class="partner-name">Max Life</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-hand-holding-heart"></i>
+                                </div>
+                                <h6 class="partner-name">SBI Life</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-heart-shield"></i>
+                                </div>
+                                <h6 class="partner-name">Kotak Life</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-shield-check"></i>
                                 </div>
                                 <h6 class="partner-name">Bajaj Allianz</h6>
                             </div>
@@ -1214,79 +1270,9 @@
                         <div class="col-6 col-md-4 col-lg-3">
                             <div class="partner-card">
                                 <div class="partner-logo">
-                                    <i class="fas fa-car"></i>
+                                    <i class="fas fa-user-check"></i>
                                 </div>
-                                <h6 class="partner-name">Tata AIG</h6>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="partner-card">
-                                <div class="partner-logo">
-                                    <i class="fas fa-car"></i>
-                                </div>
-                                <h6 class="partner-name">Reliance General</h6>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="partner-card">
-                                <div class="partner-logo">
-                                    <i class="fas fa-car"></i>
-                                </div>
-                                <h6 class="partner-name">Kotak Mahindra</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bike Insurance Partners -->
-                <div class="tab-pane fade" id="bike" role="tabpanel">
-                    <div class="row g-3">
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="partner-card">
-                                <div class="partner-logo">
-                                    <i class="fas fa-motorcycle"></i>
-                                </div>
-                                <h6 class="partner-name">Bajaj Allianz</h6>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="partner-card">
-                                <div class="partner-logo">
-                                    <i class="fas fa-motorcycle"></i>
-                                </div>
-                                <h6 class="partner-name">Royal Sundaram</h6>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="partner-card">
-                                <div class="partner-logo">
-                                    <i class="fas fa-motorcycle"></i>
-                                </div>
-                                <h6 class="partner-name">Iffco Tokio</h6>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="partner-card">
-                                <div class="partner-logo">
-                                    <i class="fas fa-motorcycle"></i>
-                                </div>
-                                <h6 class="partner-name">HDFC Ergo</h6>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="partner-card">
-                                <div class="partner-logo">
-                                    <i class="fas fa-motorcycle"></i>
-                                </div>
-                                <h6 class="partner-name">Tata AIG</h6>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="partner-card">
-                                <div class="partner-logo">
-                                    <i class="fas fa-motorcycle"></i>
-                                </div>
-                                <h6 class="partner-name">Future Generali</h6>
+                                <h6 class="partner-name">TATA AIA</h6>
                             </div>
                         </div>
                     </div>
@@ -1294,7 +1280,6 @@
             </div>
         </div>
     </section>
-
     <!-- Testimonials Section -->
     <section class="testimonials-section section-padding" id="testimonials">
         <div class="container">

@@ -4,336 +4,840 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | PolicyVeda - Insurance Advisory Platform</title>
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --primary-blue: #1F78C8;
+            --primary-green: #4CAF33;
+            --dark-blue: #1963A6;
+            --dark-green: #3E8C29;
+            --light-blue: rgba(31, 120, 200, 0.1);
+            --light-green: rgba(76, 175, 51, 0.1);
+            --white: #FFFFFF;
+            --light-gray: #F8FAFC;
+            --medium-gray: #64748B;
+            --dark-gray: #1E293B;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 15px 30px rgba(31, 120, 200, 0.1);
+        }
+        
+        /* ===== BASE STYLES ===== */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+            background-color: #F7FBFE;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-brand img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .navbar-nav .nav-link {
+            color: var(--dark-gray) !important;
+            font-weight: 600;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            border-radius: 8px;
+            color: var(--primary-blue) !important;
+            background-color: var(--light-blue);
+        }
+        
+        .nav-cta-btn {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white) !important;
+            padding: 10px 25px !important;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 20px rgba(31, 120, 200, 0.2);
+            color: var(--white) !important;
+        }
+        
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            background: linear-gradient(135deg, rgba(31, 120, 200, 0.05) 0%, rgba(76, 175, 51, 0.03) 100%);
+            padding: 140px 0 80px;
+            margin-top: 76px;
+        }
+        
+        .page-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .page-hero p {
+            font-size: 1.25rem;
+            color: var(--medium-gray);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        /* ===== CONTENT SECTIONS ===== */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .content-block {
+            margin-bottom: 60px;
+        }
+        
+        .content-block h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+        
+        .content-block p {
+            font-size: 1.125rem;
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        /* ===== FEATURE CARDS ===== */
+        .feature-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(31, 120, 200, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-blue);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: var(--medium-gray);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        /* ===== PROCESS STEPS ===== */
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .step-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .step h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+        
+        .step p {
+            color: var(--medium-gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        /* ===== SERVICE CARDS ===== */
+        .service-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(31, 120, 200, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-blue);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+        
+        .service-card p {
+            color: var(--medium-gray);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 25px 0;
+        }
+        
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: var(--dark-gray);
+            font-size: 1rem;
+        }
+        
+        .service-features i {
+            color: var(--primary-green);
+            font-size: 1rem;
+        }
+        
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .footer-heading {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-green);
+            transform: translateX(5px);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* ===== WHATSAPP BUTTON ===== */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.75rem;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            z-index: 100;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            color: white;
+        }
+        
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 768px) {
+            .page-hero {
+                padding: 100px 0 60px;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .page-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .content-block h2 {
+                font-size: 2rem;
+            }
+            
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-icon {
+                margin: 0 auto 15px;
+            }
+            
+            .navbar-collapse {
+                background: var(--white);
+                padding: 20px;
+                border-radius: 10px;
+                margin-top: 10px;
+                box-shadow: var(--shadow);
+            }
+            
+            .nav-cta-btn {
+                margin-top: 10px;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .service-card,
+            .feature-card {
+                padding: 25px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
-    <header id="header">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <nav class="navbar">
-                <a href="/" class="logo">
-                    <div class="logo-icon">PV</div>
-                    <div class="logo-text">Policy<span>Veda</span></div>
-                </a>
-                
-                <ul class="nav-links">
-                    <li><a href="/" class="nav-link">Home</a></li>
-                    <li><a href="about" class="nav-link active">About</a></li>
-                    <!-- <li><a href="services" class="nav-link">Services</a></li> -->
-                    <!-- <li><a href="careers" class="nav-link">Careers</a></li> -->
+            <a class="navbar-brand" href="/">
+                <img src="./images/PolicyVedaLogo.png" alt="PolicyVeda" class="img-fluid" style="height: 60px;">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto text-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about">About</a>
+                    </li>
                 </ul>
-                
-                <a href="#consultation" class="nav-cta">
-                    <i class="fas fa-phone-alt"></i> Free Consultation
-                </a>
-                
-                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </nav>
+
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-cta-btn" href="#consultation">
+                            <i class="fas fa-phone-alt"></i> Free Consultation
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </header>
-    <!-- Mobile Sidebar + Overlay -->
-<div class="overlay" id="overlay"></div>
+    </nav>
 
-<aside class="sidebar" id="sidebar" aria-hidden="true">
-  <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">
-    <i class="fas fa-times"></i>
-  </button>
-
-  <a href="index.html" class="sidebar-logo">
-    <div class="logo-icon">PV</div>
-    <div class="logo-text">Policy<span>Veda</span></div>
-  </a>
-
-  <nav class="sidebar-nav" aria-label="Mobile Navigation">
-    <a href="/" class="sidebar-link">Home</a>
-    <a href="about" class="sidebar-link">About</a>
-    <!-- <a href="services" class="sidebar-link">Services</a> -->
-    <!-- <a href="careers" class="sidebar-link">Careers</a> -->
-  </nav>
-
-  <a href="#consultation" class="sidebar-cta">
-    <i class="fas fa-phone-alt"></i> Free Consultation
-  </a>
-</aside>
     <!-- Page Hero -->
     <section class="page-hero">
         <div class="container">
-            <h1>About PolicyVeda</h1>
-            <p>PolicyVeda is an insurance advisory platform designed to simplify the insurance decision-making process for individuals, families, and businesses.</p>
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1>About PolicyVeda</h1>
+                    <p>PolicyVeda is an insurance advisory platform designed to simplify the insurance decision-making process for individuals, families, and businesses.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Content Section -->
     <section class="section">
         <div class="container">
-            <div class="content-block animate-on-scroll">
-                <h2>Our Mission & Purpose</h2>
-                <p>Insurance policies often come with complex terms, conditions, and exclusions that are difficult to understand. Our role is to bridge this gap by providing clear explanations and structured guidance.</p>
-                <p>We aim to empower people with accurate insurance knowledge so they can make decisions that truly protect their financial well-being. Our focus is not selling policies, but helping customers understand what they are buying and why it matters.</p>
+            <!-- Mission & Purpose -->
+            <div class="row justify-content-center content-block">
+                <div class="col-lg-10">
+                    <h2>Our Mission & Purpose</h2>
+                    <p>Insurance policies often come with complex terms, conditions, and exclusions that are difficult to understand. Our role is to bridge this gap by providing clear explanations and structured guidance.</p>
+                    <p>We aim to empower people with accurate insurance knowledge so they can make decisions that truly protect their financial well-being. Our focus is not selling policies, but helping customers understand what they are buying and why it matters.</p>
+                </div>
             </div>
 
-            <div class="content-block animate-on-scroll">
-                <h2>What We Believe In</h2>
-                <div class="features-grid">
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">
-                            <i class="fas fa-eye"></i>
+            <!-- What We Believe In -->
+            <div class="row justify-content-center content-block">
+                <div class="col-lg-10">
+                    <h2>What We Believe In</h2>
+                    <div class="row g-4 mt-4">
+                        <div class="col-md-6 col-lg-3">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <h4>Transparency</h4>
+                                <p>Insurance should be transparent, with no hidden terms or confusing clauses.</p>
+                            </div>
                         </div>
-                        <h4>Transparency</h4>
-                        <p>Insurance should be transparent, with no hidden terms or confusing clauses.</p>
-                    </div>
-                    
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">
-                            <i class="fas fa-graduation-cap"></i>
+                        
+                        <div class="col-md-6 col-lg-3">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <h4>Education</h4>
+                                <p>Customers deserve clear information to make informed decisions.</p>
+                            </div>
                         </div>
-                        <h4>Education</h4>
-                        <p>Customers deserve clear information to make informed decisions.</p>
-                    </div>
-                    
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">
-                            <i class="fas fa-bullseye"></i>
+                        
+                        <div class="col-md-6 col-lg-3">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-bullseye"></i>
+                                </div>
+                                <h4>Need-Based</h4>
+                                <p>Every recommendation should be tailored to individual requirements.</p>
+                            </div>
                         </div>
-                        <h4>Need-Based</h4>
-                        <p>Every recommendation should be tailored to individual requirements.</p>
-                    </div>
-                    
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">
-                            <i class="fas fa-handshake"></i>
+                        
+                        <div class="col-md-6 col-lg-3">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <h4>Long-Term Trust</h4>
+                                <p>Building lasting relationships is more important than short-term sales.</p>
+                            </div>
                         </div>
-                        <h4>Long-Term Trust</h4>
-                        <p>Building lasting relationships is more important than short-term sales.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="content-block animate-on-scroll">
-                <h2>Our Advisory Philosophy</h2>
-                <p>PolicyVeda follows a structured advisory process designed to ensure you make informed decisions:</p>
-                
-                <div class="process-steps">
-                    <div class="step animate-on-scroll">
-                        <div class="step-icon">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <h4>Requirement Analysis</h4>
-                        <p>Understanding your specific needs, financial situation, and coverage expectations.</p>
-                    </div>
+            <!-- Advisory Philosophy -->
+            <div class="row justify-content-center content-block">
+                <div class="col-lg-10">
+                    <h2>Our Advisory Philosophy</h2>
+                    <p>PolicyVeda follows a structured advisory process designed to ensure you make informed decisions:</p>
                     
-                    <div class="step animate-on-scroll">
-                        <div class="step-icon">
-                            <i class="fas fa-chart-bar"></i>
+                    <div class="process-steps">
+                        <div class="step">
+                            <div class="step-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div>
+                                <h4>Requirement Analysis</h4>
+                                <p>Understanding your specific needs, financial situation, and coverage expectations.</p>
+                            </div>
                         </div>
-                        <h4>Coverage Evaluation</h4>
-                        <p>Assessing what type and level of coverage best suits your requirements.</p>
-                    </div>
-                    
-                    <div class="step animate-on-scroll">
-                        <div class="step-icon">
-                            <i class="fas fa-balance-scale"></i>
+                        
+                        <div class="step">
+                            <div class="step-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div>
+                                <h4>Coverage Evaluation</h4>
+                                <p>Assessing what type and level of coverage best suits your requirements.</p>
+                            </div>
                         </div>
-                        <h4>Policy Comparison</h4>
-                        <p>Analyzing multiple options from various providers to find the best match.</p>
-                    </div>
-                    
-                    <div class="step animate-on-scroll">
-                        <div class="step-icon">
-                            <i class="fas fa-comments"></i>
+                        
+                        <div class="step">
+                            <div class="step-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <div>
+                                <h4>Policy Comparison</h4>
+                                <p>Analyzing multiple options from various providers to find the best match.</p>
+                            </div>
                         </div>
-                        <h4>Clear Explanation</h4>
-                        <p>Explaining inclusions, exclusions, and terms in simple, understandable language.</p>
-                    </div>
-                    
-                    <div class="step animate-on-scroll">
-                        <div class="step-icon">
-                            <i class="fas fa-headset"></i>
+                        
+                        <div class="step">
+                            <div class="step-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div>
+                                <h4>Clear Explanation</h4>
+                                <p>Explaining inclusions, exclusions, and terms in simple, understandable language.</p>
+                            </div>
                         </div>
-                        <h4>Ongoing Support</h4>
-                        <p>Providing continuous guidance and support throughout your insurance journey.</p>
+                        
+                        <div class="step">
+                            <div class="step-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div>
+                                <h4>Ongoing Support</h4>
+                                <p>Providing continuous guidance and support throughout your insurance journey.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="content-block animate-on-scroll">
-                <h2>Who We Serve</h2>
-                <div class="services-grid">
-                    <div class="service-card animate-on-scroll">
-                        <div class="service-icon">
-                            <i class="fas fa-user"></i>
+            <!-- Who We Serve -->
+            <div class="row justify-content-center content-block">
+                <div class="col-lg-10">
+                    <h2>Who We Serve</h2>
+                    <div class="row g-4 mt-4">
+                        <div class="col-md-6 col-lg-3">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <h3>Individuals</h3>
+                                <p>Seeking personal insurance coverage for health, life, and assets.</p>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> Personal health insurance</li>
+                                    <li><i class="fas fa-check"></i> Term life insurance</li>
+                                    <li><i class="fas fa-check"></i> Vehicle insurance</li>
+                                    <li><i class="fas fa-check"></i> Travel insurance</li>
+                                </ul>
+                            </div>
                         </div>
-                        <h3>Individuals</h3>
-                        <p>Seeking personal insurance coverage for health, life, and assets.</p>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Personal health insurance</li>
-                            <li><i class="fas fa-check"></i> Term life insurance</li>
-                            <li><i class="fas fa-check"></i> Vehicle insurance</li>
-                            <li><i class="fas fa-check"></i> Travel insurance</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="service-card animate-on-scroll">
-                        <div class="service-icon">
-                            <i class="fas fa-users"></i>
+                        
+                        <div class="col-md-6 col-lg-3">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h3>Families</h3>
+                                <p>Planning long-term financial protection for loved ones.</p>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> Family health plans</li>
+                                    <li><i class="fas fa-check"></i> Child education plans</li>
+                                    <li><i class="fas fa-check"></i> Retirement planning</li>
+                                    <li><i class="fas fa-check"></i> Wealth protection</li>
+                                </ul>
+                            </div>
                         </div>
-                        <h3>Families</h3>
-                        <p>Planning long-term financial protection for loved ones.</p>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Family health plans</li>
-                            <li><i class="fas fa-check"></i> Child education plans</li>
-                            <li><i class="fas fa-check"></i> Retirement planning</li>
-                            <li><i class="fas fa-check"></i> Wealth protection</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="service-card animate-on-scroll">
-                        <div class="service-icon">
-                            <i class="fas fa-briefcase"></i>
+                        
+                        <div class="col-md-6 col-lg-3">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <h3>Professionals</h3>
+                                <p>Looking for comprehensive coverage that matches career growth.</p>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> Income protection</li>
+                                    <li><i class="fas fa-check"></i> Professional liability</li>
+                                    <li><i class="fas fa-check"></i> Critical illness cover</li>
+                                    <li><i class="fas fa-check"></i> Disability insurance</li>
+                                </ul>
+                            </div>
                         </div>
-                        <h3>Professionals</h3>
-                        <p>Looking for comprehensive coverage that matches career growth.</p>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Income protection</li>
-                            <li><i class="fas fa-check"></i> Professional liability</li>
-                            <li><i class="fas fa-check"></i> Critical illness cover</li>
-                            <li><i class="fas fa-check"></i> Disability insurance</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="service-card animate-on-scroll">
-                        <div class="service-icon">
-                            <i class="fas fa-building"></i>
+                        
+                        <div class="col-md-6 col-lg-3">
+                            <div class="service-card">
+                                <div class="service-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <h3>Businesses</h3>
+                                <p>Requiring corporate insurance solutions for employees and assets.</p>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> Group health insurance</li>
+                                    <li><i class="fas fa-check"></i> Business liability</li>
+                                    <li><i class="fas fa-check"></i> Asset protection</li>
+                                    <li><i class="fas fa-check"></i> Employee benefits</li>
+                                </ul>
+                            </div>
                         </div>
-                        <h3>Businesses</h3>
-                        <p>Requiring corporate insurance solutions for employees and assets.</p>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Group health insurance</li>
-                            <li><i class="fas fa-check"></i> Business liability</li>
-                            <li><i class="fas fa-check"></i> Asset protection</li>
-                            <li><i class="fas fa-check"></i> Employee benefits</li>
-                        </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="content-block animate-on-scroll">
-                <h2>Our Long-Term Vision</h2>
-                <p>To become a trusted insurance knowledge and advisory platform where customers feel confident, informed, and supported throughout their insurance journey. We envision a future where insurance decisions are made with clarity, confidence, and complete understanding.</p>
-                <p>We are committed to building lasting relationships based on trust, transparency, and exceptional service. Our goal is not just to help you buy insurance, but to ensure you have the right protection for your unique needs.</p>
-                
-                <div class="features-grid" style="margin-top: 3rem;">
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <h4>Industry Innovation</h4>
-                        <p>Leading the way in insurance advisory with technology and expertise.</p>
-                    </div>
+            <!-- Long-Term Vision -->
+            <div class="row justify-content-center content-block">
+                <div class="col-lg-10">
+                    <h2>Our Long-Term Vision</h2>
+                    <p>To become a trusted insurance knowledge and advisory platform where customers feel confident, informed, and supported throughout their insurance journey. We envision a future where insurance decisions are made with clarity, confidence, and complete understanding.</p>
+                    <p>We are committed to building lasting relationships based on trust, transparency, and exceptional service. Our goal is not just to help you buy insurance, but to ensure you have the right protection for your unique needs.</p>
                     
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">
-                            <i class="fas fa-globe"></i>
+                    <div class="row g-4 mt-5">
+                        <div class="col-md-4">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <h4>Industry Innovation</h4>
+                                <p>Leading the way in insurance advisory with technology and expertise.</p>
+                            </div>
                         </div>
-                        <h4>National Reach</h4>
-                        <p>Expanding our advisory services across India to serve more customers.</p>
-                    </div>
-                    
-                    <div class="feature-card animate-on-scroll">
-                        <div class="feature-icon">
-                            <i class="fas fa-award"></i>
+                        
+                        <div class="col-md-4">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <h4>National Reach</h4>
+                                <p>Expanding our advisory services across India to serve more customers.</p>
+                            </div>
                         </div>
-                        <h4>Excellence</h4>
-                        <p>Setting new standards in customer service and advisory quality.</p>
+                        
+                        <div class="col-md-4">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <h4>Excellence</h4>
+                                <p>Setting new standards in customer service and advisory quality.</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section" id="consultation">
-        <div class="cta-bg"></div>
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">Ready to Make Informed Insurance Decisions?</h2>
-                <p class="cta-subtitle">Join thousands of satisfied customers who trust PolicyVeda for clear, unbiased insurance guidance.</p>
-                <div class="cta-buttons">
-                    <a href="index.html#advisory" class="btn btn-accent">
-                        <i class="fas fa-calendar-check"></i> Book Free Consultation
-                    </a>
-                    <a href="services.html" class="btn btn-outline-light">
-                        <i class="fas fa-search"></i> Explore Our Services
-                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
                     <div class="footer-logo">
-                        <div class="footer-logo-icon">PV</div>
-                        <div class="footer-logo-text">PolicyVeda</div>
+                        <a class="navbar-brand" href="/">
+                            <img src="./images/PolicyVedaLogo.jpeg" alt="PolicyVeda" class="img-fluid">
+                        </a>
                     </div>
-                    <p>Smart insurance decisions made simple. We provide unbiased guidance to help you choose the right insurance policies with confidence.</p>
+                    <p class="footer-about">
+                        Smart insurance decisions made simple. We provide unbiased guidance to help you choose the right insurance policies with confidence.
+                    </p>
                 </div>
-                
-                <div>
-                    <h3 class="footer-heading">Quick Links</h3>
+
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h4 class="footer-heading">Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="about"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                        <!-- <li><a href="services"><i class="fas fa-chevron-right"></i> Services</a></li> -->
-                        <!-- <li><a href="careers"><i class="fas fa-chevron-right"></i> Careers</a></li> -->
+                        <li><a href="/">Home</a></li>
+                        <li><a href="about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#partners">Partners</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-contact">
-                    <h3 class="footer-heading">Contact Info</h3>
-                    
+
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <h4 class="footer-heading">Contact Info</h4>
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
-                        <div>
-                            <p>support@policyveda.com</p>
-                        </div>
+                        <span>info@policyveda.com</span>
                     </div>
-                    
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-phone-alt"></i>
                         </div>
-                        <div>
-                            <p>+91 98765 43210</p>
-                        </div>
+                        <span>+91 98765 43210</span>
                     </div>
-                    
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
-                        <div>
-                            <p>Gurgaon, India</p>
-                        </div>
+                        <span>2nd Floor, Plot No - 47, Market, Neelam Flyover, near Neelam Chowk, New Industrial Township, Faridabad, Haryana 121001</span>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <h4 class="footer-heading">Follow Us</h4>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-white fs-4"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white fs-4"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-white fs-4"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-white fs-4"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>&copy; 2026 PolicyVeda. All rights reserved. Insurance is the subject matter of solicitation.</p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/919876543210?text=Hi,%20I%20need%20help%20choosing%20the%20right%20insurance%20policy."
+        class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if (navbarCollapse.classList.contains('show')) {
+                        const navbarToggler = document.querySelector('.navbar-toggler');
+                        navbarToggler.click();
+                    }
+                }
+            });
+        });
+
+        // Consultation button alert
+        document.querySelectorAll('.nav-cta-btn[href="#consultation"]').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                alert('Thank you for your interest! Our advisor will contact you shortly.');
+            });
+        });
+    </script>
 </body>
 </html>
