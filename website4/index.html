@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolicyVeda | Smart Insurance Decisions</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-blue: #1F78C8;
+            --primary-green: #4CAF33;
+            --dark-blue: #0D5CA6;
+            --dark-green: #3A8C26;
+            --light-blue: rgba(31, 120, 200, 0.08);
+            --light-green: rgba(76, 175, 51, 0.08);
+            --white: #FFFFFF;
+            --off-white: #F9FBFD;
+            --light-gray: #F5F7FA;
+            --medium-gray: #6B7280;
+            --dark-gray: #1F2937;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.7;
+            background-color: var(--off-white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-padding {
+            padding: 6rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-padding {
+                padding: 4rem 0;
+            }
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background-color: var(--white);
+            padding: 1rem 0;
+            box-shadow: var(--shadow-sm);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            box-shadow: var(--shadow-lg);
+            padding: 0.75rem 0;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            width: auto;
+        }
+
+        .navbar-nav .nav-item {
+            margin: 0 0.5rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--dark-gray) !important;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--primary-blue) !important;
+            background-color: var(--light-blue);
+        }
+
+        .nav-cta-btn {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: white;
+            padding: 0.75rem 1.75rem !important;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(31, 120, 200, 0.25);
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 0.5rem;
+            font-size: 1.25rem;
+            color: var(--primary-blue);
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(31, 120, 200, 0.05) 0%, rgba(76, 175, 51, 0.03) 100%);
+            padding: 10rem 0 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(31, 120, 200, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(76, 175, 51, 0.03) 0%, transparent 50%);
+        }
+
+        .hero-title {
+            font-size: 3.25rem;
+            font-weight: 800;
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--medium-gray);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(31, 120, 200, 0.2);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(31, 120, 200, 0.3);
+            color: var(--white);
+        }
+
+        .btn-secondary-custom {
+            background: var(--white);
+            color: var(--primary-blue);
+            padding: 1rem 2rem;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: 2px solid var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary-custom:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(31, 120, 200, 0.15);
+        }
+
+        .hero-image-container {
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-icon {
+            font-size: 12rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.75rem;
+            }
+            
+            .hero-icon {
+                font-size: 8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 8rem 0 4rem;
+            }
+            
+            .hero-title {
+                font-size: 2.25rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .btn-primary-custom,
+            .btn-secondary-custom {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* ===== SERVICES SECTION ===== */
+        .services-section {
+            background-color: var(--white);
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.4s ease;
+            border: 1px solid var(--light-gray);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-blue);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.75rem;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== FEATURES SECTION ===== */
+        .features-section {
+            background-color: var(--off-white);
+        }
+
+        .feature-box {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 2.5rem;
+            height: 100%;
+            transition: all 0.4s ease;
+            border: 1px solid var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-blue);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-box:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        .feature-title {
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+
+        .feature-text {
+            color: var(--medium-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ===== PARTNERS SECTION ===== */
+        .partners-section {
+            background-color: var(--white);
+        }
+
+        .nav-tabs {
+            border: none;
+            justify-content: center;
+            margin-bottom: 3rem;
+            gap: 1rem;
+        }
+
+        .nav-tabs .nav-link {
+            border: 2px solid transparent;
+            border-radius: var(--radius-sm);
+            padding: 0.875rem 2rem;
+            color: var(--medium-gray);
+            font-weight: 600;
+            background: var(--off-white);
+            transition: all 0.3s ease;
+        }
+
+        .nav-tabs .nav-link:hover {
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+            background: var(--light-blue);
+        }
+
+        .nav-tabs .nav-link.active {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: var(--white);
+            border-color: var(--primary-blue);
+            box-shadow: 0 4px 12px rgba(31, 120, 200, 0.2);
+        }
+
+        .partner-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--light-gray);
+            height: 100%;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-blue);
+        }
+
+        .partner-logo {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .partner-logo i {
+            font-size: 2.5rem;
+        }
+
+        .partner-name {
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* ===== TESTIMONIALS SECTION ===== */
+        .testimonials-section {
+            background: linear-gradient(135deg, rgba(76, 175, 51, 0.03) 0%, rgba(31, 120, 200, 0.02) 100%);
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--light-gray);
+            height: 100%;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1.5rem;
+            left: 2rem;
+            font-size: 4rem;
+            color: var(--primary-blue);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            color: var(--medium-gray);
+            font-style: italic;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+
+        .client-details h5 {
+            margin: 0;
+            color: var(--dark-gray);
+            font-size: 1.125rem;
+        }
+
+        .client-details p {
+            margin: 0.25rem 0 0;
+            color: var(--medium-gray);
+            font-size: 0.875rem;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            background: var(--dark-blue);
+            opacity: 1;
+        }
+
+        .carousel-control-prev {
+            left: -25px;
+        }
+
+        .carousel-control-next {
+            right: -25px;
+        }
+
+        /* ===== BENEFITS SECTION ===== */
+        .benefits-section {
+            background-color: var(--off-white);
+        }
+
+        .benefit-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 2.5rem;
+            text-align: center;
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid var(--light-gray);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-green);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-green);
+        }
+
+        .benefit-title {
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+
+        /* ===== PROCESS SECTION ===== */
+        .process-section {
+            background-color: var(--white);
+        }
+
+        .step-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 2.5rem;
+            text-align: center;
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid var(--light-gray);
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-blue);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step-title {
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            color: var(--white);
+            padding: 6rem 0;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .cta-text {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            padding: 5rem 0 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .footer-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .footer-about {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .footer-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-green);
+            transform: translateX(5px);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.875rem;
+        }
+
+        /* ===== WHATSAPP BUTTON ===== */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.75rem;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            color: white;
+        }
+
+        /* ===== RESPONSIVE ADJUSTMENTS ===== */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.25rem;
+            }
+            
+            .carousel-control-prev {
+                left: 10px;
+            }
+            
+            .carousel-control-next {
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav {
+                padding: 1rem 0;
+            }
+            
+            .nav-cta-btn {
+                width: 100%;
+                justify-content: center;
+                margin-top: 0.5rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.875rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            .nav-tabs .nav-link {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.875rem;
+            }
+            
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-padding {
+                padding: 3rem 0;
+            }
+            
+            .feature-box,
+            .service-card,
+            .benefit-card,
+            .step-card,
+            .partner-card,
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+            
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="./images/PolicyVedaLogo.jpeg" alt="PolicyVeda" class="img-fluid">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class=" nav-cta-btn" href="#consultation">
+                            <i class="fas fa-phone-alt"></i> Free Consultation
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 animate-fade-in-up">
+                    <h1 class="hero-title">Compare & Buy Insurance Plans That <span>Truly Protect You</span></h1>
+                    <p class="hero-subtitle">
+                        <strong>PolicyVeda</strong> helps you compare the best health insurance plans and term insurance policies from top insurers in India. Get transparent comparisons, expert advice, and hassle-free policy buying—all in one place.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#consultation" class="btn-primary-custom">
+                            <i class="fas fa-user-tie"></i> Talk to an Advisor
+                        </a>
+                        <a href="https://wa.me/919876543210?text=Hi,%20I%20need%20help%20choosing%20the%20right%20insurance%20policy."
+                            class="btn-secondary-custom" target="_blank">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Expert
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 animate-fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="hero-image-container mt-5 mt-lg-0">
+                        <i class="fas fa-shield-alt hero-icon"></i>
+                        <h4 class="fw-bold mb-3" style="color: var(--dark-blue);">Your Financial Safety Net</h4>
+                        <p class="text-muted">Secure your future with the right insurance coverage</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance Services Section -->
+    <section class="services-section section-padding" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Insurance Services</h2>
+            <p class="section-subtitle">Comprehensive insurance solutions for every need and stage of life</p>
+
+            <div class="row g-4">
+                <!-- Each col-lg ensures 5 boxes per row on large screens -->
+                <div class="col-6 col-md-4 col-lg">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h5 class="service-title">Health Insurance</h5>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h5 class="service-title">Term Insurance</h5>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-life-ring"></i>
+                        </div>
+                        <h5 class="service-title">Life Insurance</h5>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h5 class="service-title">Family Insurance</h5>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h5 class="service-title">Individual Insurance</h5>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <h5 class="service-title">Senior Citizen Insurance</h5>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h5 class="service-title">Investment Plans</h5>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-file-medical"></i>
+                        </div>
+                        <h5 class="service-title">Critical Illness</h5>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-plus-square"></i>
+                        </div>
+                        <h5 class="service-title">Health Top-up</h5>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-baby"></i>
+                        </div>
+                        <h5 class="service-title">Maternity Insurance</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section section-padding" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose PolicyVeda?</h2>
+            <p class="section-subtitle">We provide transparent, customer-focused insurance solutions that put your needs first</p>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4 class="feature-title">Quick Claim Settlement</h4>
+                        <p class="feature-text">Fast and hassle-free claim processing when you need it most.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h4 class="feature-title">Right Policy, Not Maximum Sale</h4>
+                        <p class="feature-text">We recommend what's best for you, not what's best for our sales.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h4 class="feature-title">Simplified Insurance Buying</h4>
+                        <p class="feature-text">Clear explanations and guidance at every step of the process.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4 class="feature-title">40+ Insurance Partners</h4>
+                        <p class="feature-text">Wide range of options from top insurance companies in India.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance Partners Section -->
+    <section class="partners-section section-padding" id="partners">
+        <div class="container">
+            <h2 class="section-title">Our Insurance Partners</h2>
+            <p class="section-subtitle">Partnered with leading insurance companies to provide you the best options</p>
+
+            <!-- Tabs Navigation -->
+            <ul class="nav nav-tabs" id="partnerTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="health-tab" data-bs-toggle="tab" data-bs-target="#health" type="button" role="tab">
+                        <i class="fas fa-heartbeat me-2"></i> Health Insurance
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="car-tab" data-bs-toggle="tab" data-bs-target="#car" type="button" role="tab">
+                        <i class="fas fa-car me-2"></i> Car Insurance
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="bike-tab" data-bs-toggle="tab" data-bs-target="#bike" type="button" role="tab">
+                        <i class="fas fa-motorcycle me-2"></i> Bike Insurance
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Tabs Content -->
+            <div class="tab-content mt-4" id="partnerTabsContent">
+                <!-- Health Insurance Partners -->
+                <div class="tab-pane fade show active" id="health" role="tabpanel">
+                    <div class="row g-3">
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-hospital-alt"></i>
+                                </div>
+                                <h6 class="partner-name">Care Insurance</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h6 class="partner-name">Niva Bupa</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h6 class="partner-name">Star Health</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-stethoscope"></i>
+                                </div>
+                                <h6 class="partner-name">Manipal Cigna</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <h6 class="partner-name">ICICI Lombard</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-flag"></i>
+                                </div>
+                                <h6 class="partner-name">National Insurance</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-industry"></i>
+                                </div>
+                                <h6 class="partner-name">Iffco Tokio</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-compass"></i>
+                                </div>
+                                <h6 class="partner-name">Oriental Insurance</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Insurance Partners -->
+                <div class="tab-pane fade" id="car" role="tabpanel">
+                    <div class="row g-3">
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-car"></i>
+                                </div>
+                                <h6 class="partner-name">ICICI Lombard</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-car"></i>
+                                </div>
+                                <h6 class="partner-name">HDFC Ergo</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-car"></i>
+                                </div>
+                                <h6 class="partner-name">Bajaj Allianz</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-car"></i>
+                                </div>
+                                <h6 class="partner-name">Tata AIG</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-car"></i>
+                                </div>
+                                <h6 class="partner-name">Reliance General</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-car"></i>
+                                </div>
+                                <h6 class="partner-name">Kotak Mahindra</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bike Insurance Partners -->
+                <div class="tab-pane fade" id="bike" role="tabpanel">
+                    <div class="row g-3">
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-motorcycle"></i>
+                                </div>
+                                <h6 class="partner-name">Bajaj Allianz</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-motorcycle"></i>
+                                </div>
+                                <h6 class="partner-name">Royal Sundaram</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-motorcycle"></i>
+                                </div>
+                                <h6 class="partner-name">Iffco Tokio</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-motorcycle"></i>
+                                </div>
+                                <h6 class="partner-name">HDFC Ergo</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-motorcycle"></i>
+                                </div>
+                                <h6 class="partner-name">Tata AIG</h6>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="partner-card">
+                                <div class="partner-logo">
+                                    <i class="fas fa-motorcycle"></i>
+                                </div>
+                                <h6 class="partner-name">Future Generali</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section section-padding" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Are Saying</h2>
+            <p class="section-subtitle">Real experiences from our satisfied customers</p>
+
+            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <div class="row justify-content-center g-4">
+                            <div class="col-lg-5">
+                                <div class="testimonial-card">
+                                    <p class="testimonial-text">
+                                        Buying health insurance always felt confusing, but the PolicyVeda team explained everything in simple terms. They didn't push any product, just helped me choose what actually fit my needs. Very smooth and transparent experience.
+                                    </p>
+                                    <div class="client-info">
+                                        <div class="client-avatar">AS</div>
+                                        <div class="client-details">
+                                            <h5>Ananya Sharma</h5>
+                                            <p>24 Years | Noida</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="testimonial-card">
+                                    <p class="testimonial-text">
+                                        I had an existing health policy, and PolicyVeda helped me port it without any issues. The team explained everything clearly and took care of all the paperwork. It was a smooth process, and I didn't have to worry about my coverage at all.
+                                    </p>
+                                    <div class="client-info">
+                                        <div class="client-avatar">KR</div>
+                                        <div class="client-details">
+                                            <h5>Karthik Reddy</h5>
+                                            <p>33 Years | Hyderabad</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+                        <div class="row justify-content-center g-4">
+                            <div class="col-lg-5">
+                                <div class="testimonial-card">
+                                    <p class="testimonial-text">
+                                        I truly appreciated PolicyVeda's honest guidance. They prioritized long-term benefits over selling a costly policy, making the entire experience smooth and stress-free.
+                                    </p>
+                                    <div class="client-info">
+                                        <div class="client-avatar">PM</div>
+                                        <div class="client-details">
+                                            <h5>Pooja Mehta</h5>
+                                            <p>31 Years | Ahmedabad</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="testimonial-card">
+                                    <p class="testimonial-text">
+                                        When I had to raise a claim, PolicyVeda supported me at every step. Their follow-ups and clear guidance made the claim process simple and hassle-free. Truly reliable service.
+                                    </p>
+                                    <div class="client-info">
+                                        <div class="client-avatar">SI</div>
+                                        <div class="client-details">
+                                            <h5>Suresh Iyer</h5>
+                                            <p>47 Years | Chennai</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-item">
+                        <div class="row justify-content-center g-4">
+                            <div class="col-lg-5">
+                                <div class="testimonial-card">
+                                    <p class="testimonial-text">
+                                        PolicyVeda's team, especially Ritu from the customer care team, is very responsive and knowledgeable. Even after the policy purchase, she was always available to answer my questions. Highly trustworthy and professional.
+                                    </p>
+                                    <div class="client-info">
+                                        <div class="client-avatar">NV</div>
+                                        <div class="client-details">
+                                            <h5>Neha Verma</h5>
+                                            <p>27 Years | Delhi</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="testimonial-card">
+                                    <p class="testimonial-text">
+                                        At my age, choosing the right health insurance was very important and also confusing. Poonam from PolicyVeda guided me patiently and explained everything in simple, easy-to-understand language. Even the waiting periods and exclusions were clearly explained. I now feel secure knowing I have the right coverage and support when I need it.
+                                    </p>
+                                    <div class="client-info">
+                                        <div class="client-avatar">RM</div>
+                                        <div class="client-details">
+                                            <h5>Ramesh Malhotra</h5>
+                                            <p>68 Years | Gurugram</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                    <i class="fas fa-chevron-left"></i>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                    <i class="fas fa-chevron-right"></i>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section section-padding">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--primary-green);">Our Key Benefits</h2>
+            <p class="section-subtitle">Experience the PolicyVeda difference with our unique approach</p>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4 class="benefit-title">Customer-First Approach</h4>
+                        <p class="feature-text">Every recommendation starts with understanding your unique needs and financial situation.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h4 class="benefit-title">Clear Explanations</h4>
+                        <p class="feature-text">We break down complex insurance terms into simple, understandable language.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4 class="benefit-title">No Pressure Tactics</h4>
+                        <p class="feature-text">We provide guidance, not sales pressure. Your comfort is our priority.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section section-padding" id="process">
+        <div class="container">
+            <h2 class="section-title">How PolicyVeda Works</h2>
+            <p class="section-subtitle">Four simple steps to get the perfect insurance coverage</p>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h4 class="step-title">Understand Your Needs</h4>
+                        <p class="feature-text">We begin by understanding your specific insurance requirements and financial situation.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h4 class="step-title">Compare Options</h4>
+                        <p class="feature-text">We analyze and compare relevant policy options from multiple providers.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h4 class="step-title">Explain Clearly</h4>
+                        <p class="feature-text">We explain features, benefits, and limitations in simple, understandable language.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h4 class="step-title">Make Confident Decision</h4>
+                        <p class="feature-text">We help you make an informed decision that aligns with your needs and budget.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-logo">
+                        <a class="navbar-brand" href="/">
+                            <img src="./images/PolicyVedaLogo.jpeg" alt="PolicyVeda" class="img-fluid">
+                        </a>
+                    </div>
+                    <p class="footer-about">
+                        Smart insurance decisions made simple. We provide unbiased guidance to help you choose the right insurance policies with confidence.
+                    </p>
+                </div>
+
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#partners">Partners</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <h4 class="footer-heading">Contact Info</h4>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <span>info@policyveda.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <span>+91 98765 43210</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <span>2nd Floor, Plot No - 47, Market, Neelam Flyover, near Neelam Chowk, New Industrial Township, Faridabad, Haryana 121001</span>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <h4 class="footer-heading">Follow Us</h4>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-white fs-4"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white fs-4"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-white fs-4"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-white fs-4"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 PolicyVeda. All rights reserved. Insurance is the subject matter of solicitation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/919876543210?text=Hi,%20I%20need%20help%20choosing%20the%20right%20insurance%20policy."
+        class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if (navbarCollapse.classList.contains('show')) {
+                        const navbarToggler = document.querySelector('.navbar-toggler');
+                        navbarToggler.click();
+                    }
+                }
+            });
+        });
+
+        // Consultation button alert
+        document.querySelectorAll('.btn-primary-custom[href="#consultation"]').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                alert('Thank you for your interest! Our advisor will contact you shortly.');
+            });
+        });
+
+        // Initialize carousel
+        document.addEventListener('DOMContentLoaded', function() {
+            var testimonialCarousel = document.getElementById('testimonialCarousel');
+            if (testimonialCarousel) {
+                var carousel = new bootstrap.Carousel(testimonialCarousel, {
+                    interval: 5000,
+                    wrap: true
+                });
+            }
+        });
+
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.service-card, .feature-box, .benefit-card, .step-card, .partner-card, .testimonial-card');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Set initial state and add animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.service-card, .feature-box, .benefit-card, .step-card, .partner-card, .testimonial-card');
+            
+            elements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
+</body>
+
+</html>
